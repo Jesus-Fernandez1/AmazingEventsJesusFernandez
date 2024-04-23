@@ -19,44 +19,48 @@
                     <img src="amazing_brand.png" alt="Bootstrap" width="100" height="50">
                 </a>
 
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div>
 
 
 
 
-                <div class="collapse navbar-collapse d-flex  justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav  ">
 
-                        <li class="nav-item ">
-                            <a class="nav-link d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2"
-                                aria-current="page" href="home.html">Home</a>
-                        </li>
+                    <div class="d-flex justify-content-between">
+                        <div class="collapse navbar-collapse " id="navbarNav">
+                            <ul class="navbar-nav  ">
 
-                        <li class="nav-item">
-                            <a class="nav-link d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2 "
-                                href="UpcomingEvents.html">Upcoming Events</a>
-                        </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2"
+                                        aria-current="page" href="home.html">Home</a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link d-inline-flex focus-ring focus-ring-danger py-1 px-2 text-decoration-none border rounded-2 "
-                                href="PastEvents.html">Past Events</a>
-                        </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2 "
+                                        href="UpcomingEvents.html">Upcoming Events</a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link d-inline-flex focus-ring focus-ring-danger py-1 px-2 text-decoration-none border rounded-2 "
-                                href="Contact.html">Contact</a>
-                        </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-inline-flex focus-ring focus-ring-danger py-1 px-2 text-decoration-none border rounded-2 "
+                                        href="PastEvents.html">Past Events</a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link active d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2  "
-                                href="#">Stats</a>
-                        </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-inline-flex focus-ring focus-ring-danger py-1 px-2 text-decoration-none border rounded-2 "
+                                        href="Contact.html">Contact</a>
+                                </li>
 
-                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link active d-inline-flex focus-ring py-1 px-2 text-decoration-none border rounded-2  "
+                                        href="#">Stats</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -64,24 +68,57 @@
     </header>
 
     <main>
-        <div class="d-flex justify-content-center my-3  ">
-            <div class="card d-flex justify-content-center a mb-3 details col-10 mx-2 bg-secondary ">
-                <div class="row g-0 h-75 d-flex justify-content-around ">
-                    <div class="col-md-6 " >
-                        <img src="books.jpg" class="img-fluid h-100 object-fit-cover" alt="...">
+        <div class="museo d-flex align-items-center ">
+            <div class="card mb-3" >
+                <div class="row g-0 ">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <img src="outing_to_the_museum.jpg" class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-5 bg-primary-subtle">
+                    <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-
+                            <dl class="row">
+                                <dt class="col-sm-4">name:</dt>
+                                <dd class="col-sm-8">Art Exhibition</dd>
+                                <dt class="col-sm-4">Date:</dt>
+                                <dd class="col-sm-8">2022-11-02</dd>
+                                <dt class="col-sm-4">description:</dt>
+                                <dd class="col-sm-8">Let's go to the art museum for an incredible tour to learn about the largest dinosaurs</dd>
+                                <dt class="col-sm-4">category:</dt>
+                                <dd class="col-sm-8">Museum</dd>
+                                <dt class="col-sm-4">place:</dt>
+                                <dd class="col-sm-8">Field</dd>
+                                <dt class="col-sm-4">capacity:</dt>
+                                <dd class="col-sm-8">82000</dd>
+                                <dt class="col-sm-4">assistance:</dt>
+                                <dd class="col-sm-8">65892</dd>
+                                <dt class="col-sm-4">price:</dt>
+                                <dd class="col-sm-8">15</dd>
+                              </dl>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
     </main>
+
+
+
+
+
+
+
 
     <footer>
         <nav class="navbar bg-body-tertiary " data-bs-theme="dark">
@@ -97,8 +134,13 @@
                 <p>jesus</p>
             </div>
 
+        </nav>
+
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
