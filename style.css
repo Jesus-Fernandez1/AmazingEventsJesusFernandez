@@ -11,3 +11,8 @@
 .cohort{
     height: 30vh;
 }
+
+.iconred {
+    width: 40px; /* Tamaño deseado */
+    height: auto; /* Altura automática para mantener la proporción */
+  }
