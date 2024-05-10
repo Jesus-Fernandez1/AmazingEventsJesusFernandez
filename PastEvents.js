@@ -206,7 +206,7 @@ function crearTarjetasPasados(padre, eventos) {
         let evento = eventos[i];
         let fechaEvento = new Date(evento.date);
 
-        // Verificar si la fecha del evento es anterior a la fecha actual
+        
         if (fechaEvento < currentDate) {
             let nuevaTarjeta = document.createElement("div");
             nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-2", "text-bg-dark", "mb-3");

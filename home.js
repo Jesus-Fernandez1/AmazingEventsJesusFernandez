@@ -197,7 +197,6 @@ const data = {
 
 let padreTarjetas = document.querySelector(".eventos1");
 
-// Llamando la función crearTarjetas con el array de eventos
 pintarTarjetas(data.events, padreTarjetas);
 
 function pintarTarjetas(eventos, divpadre) {
