@@ -209,7 +209,7 @@ function crearTarjetasPasados(padre, eventos) {
         
         if (fechaEvento < currentDate) {
             let nuevaTarjeta = document.createElement("div");
-            nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-2", "text-bg-dark", "mb-3");
+            nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-2", "text-bg-dark", "mb-3", "sombra");
             nuevaTarjeta.style.width = "18rem";
 
             nuevaTarjeta.innerHTML = `

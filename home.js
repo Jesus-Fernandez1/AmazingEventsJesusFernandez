@@ -207,7 +207,7 @@ function pintarTarjetas(eventos, divpadre) {
 
 function crearTarjeta(divpadre, tarjeta) {
     let nuevaTarjeta = document.createElement("div");
-    nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-4", "text-bg-dark", "mb-3");
+    nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-4", "text-bg-dark", "mb-3", "sombra" );
     nuevaTarjeta.style.width = "18rem";
 
     nuevaTarjeta.innerHTML =  `
@@ -218,7 +218,7 @@ function crearTarjeta(divpadre, tarjeta) {
         </div>
         <div class="d-flex flex-row justify-content-between align-items-center">
             <p>Precio: ${tarjeta.price} USD</p>
-            <a href="Detalles.html" class="btn btn-primary mb-3">Detalles</a>
+            <a href="details.html" class="btn btn-primary mb-3">Detalles</a>
         </div>
     `;
     divpadre.appendChild(nuevaTarjeta);

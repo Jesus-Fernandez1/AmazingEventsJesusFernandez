@@ -13,6 +13,12 @@
 }
 
 .iconred {
-    width: 40px; /* Tamaño deseado */
-    height: auto; /* Altura automática para mantener la proporción */
-  }
+    width: 40px; 
+    height: auto; 
+}
+
+
+.sombra {
+
+    box-shadow:0 4px 8px rgba(0, 0, 0, 0.829), 0 6px 15px rgba(80, 19, 161, 0.795);
+}
