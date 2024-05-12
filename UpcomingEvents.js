@@ -199,17 +199,18 @@ let padreTarjetasFuturas = document.querySelector(".eventosFuturos");
 
 crearTarjetasFuturas(padreTarjetasFuturas, data.events);
 
+
 function crearTarjetasFuturas(padre, eventos) {
-    let currentDate = new Date(data.currentDate);
+    let currentDate = data.currentDate; 
 
     for (let i = 0; i < eventos.length; i++) {
         let evento = eventos[i];
-        let fechaEvento = new Date(evento.date);
+        let fechaEvento = evento.date; 
 
         
         if (fechaEvento > currentDate) {
             let nuevaTarjeta = document.createElement("div");
-            nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-2", "text-bg-dark", "mb-3","sombra" );
+            nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-2", "text-bg-dark", "mb-3", "sombra");
             nuevaTarjeta.style.width = "18rem";
 
             nuevaTarjeta.innerHTML = `
@@ -223,8 +224,9 @@ function crearTarjetasFuturas(padre, eventos) {
                     <a href="Details.html" class="btn btn-primary mb-3">Details</a>
                 </div>
             `;
-
             padre.appendChild(nuevaTarjeta);
         }
     }
 }
+
+

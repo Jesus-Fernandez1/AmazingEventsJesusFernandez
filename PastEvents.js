@@ -200,11 +200,11 @@ let padreTarjetasPasados = document.querySelector(".eventosPasados");
 crearTarjetasPasados(padreTarjetasPasados, data.events);
 
 function crearTarjetasPasados(padre, eventos) {
-    let currentDate = new Date(data.currentDate);
+    let currentDate = data.currentDate
 
     for (let i = 0; i < eventos.length; i++) {
         let evento = eventos[i];
-        let fechaEvento = new Date(evento.date);
+        let fechaEvento = evento.date
 
         
         if (fechaEvento < currentDate) {
