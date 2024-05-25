@@ -221,7 +221,7 @@ function crearTarjetasPasados(padre, eventos) {
                 </div>
                 <div class="d-flex flex-row justify-content-between align-items-center">
                     <p>Price: ${evento.price} USD</p>
-                    <a href="details.html?id=${evento._id}" class="btn btn-primary mb-3">Detalles</a>
+                    <a href="details.html?id=${evento._id}" class="btn btn-primary mb-3">details</a>
                 </div>
             `;
 

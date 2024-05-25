@@ -220,7 +220,7 @@ function crearTarjeta(divpadre, tarjeta) {
         </div>
         <div class="d-flex flex-row justify-content-between align-items-center">
             <p>Precio: ${tarjeta.price} USD</p>
-            <a href="details.html?id=${tarjeta._id}" class="btn btn-primary mb-3">Detalles</a>
+            <a href="details.html?id=${tarjeta._id}" class="btn btn-primary mb-3">details</a>
         </div>
     `;
     divpadre.appendChild(nuevaTarjeta);
