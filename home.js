@@ -220,22 +220,127 @@ function crearTarjeta(divpadre, tarjeta) {
         </div>
         <div class="d-flex flex-row justify-content-between align-items-center">
             <p>Precio: ${tarjeta.price} USD</p>
-            <a href="details.html" class="btn btn-primary mb-3">Detalles</a>
+            <a href="details.html?id=${tarjeta._id}" class="btn btn-primary mb-3">Detalles</a>
         </div>
     `;
     divpadre.appendChild(nuevaTarjeta);
-    console.log(nuevaTarjeta);
+    
 }
 
+let categorias = [];
+
+data.events.forEach(evento => {
+    if (!categorias.includes(evento.category)) {
+        categorias.push(evento.category);
+    }
+});
+
+let contenedorCheckboxes = document.querySelector(".contenedorCheckbox");
+
+categorias.forEach(categoria => {
+    contenedorCheckboxes.innerHTML += `
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="${categoria}" value="${categoria}">
+            <label class="form-check-label" for="${categoria}">${categoria}</label>
+        </div>
+    `;
+});
+
+let eventos = data.events;
+
+let campoBusqueda = document.querySelector('input[type="search"]');
+
+
+campoBusqueda.addEventListener("input", () => {
+
+    let busqueda = campoBusqueda.value.trim().toLowerCase();
+
+    let eventos = data.events;
+
+    let contenedorEventos = document.querySelector(".eventos1");
+    contenedorEventos.innerHTML = "";
+
+    eventos.forEach(evento => {
+        let nombreEvento = evento.name.trim().toLowerCase();
+        let descripcionEvento = evento.description.trim().toLowerCase();
+
+        if (nombreEvento.includes(busqueda) || descripcionEvento.includes(busqueda)) {
+            crearTarjeta(contenedorEventos, evento);
+        }
+    });
+});
 
 
 
+let checkboxes = document.querySelectorAll(".form-check-input");
+
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", function() {
+        let categoriasSeleccionadas = [];
+        checkboxes.forEach(item => {
+            if (item.checked) {
+                categoriasSeleccionadas.push(item.id);
+            }
+        });
+
+        let eventosFiltrados = [];
+        if (categoriasSeleccionadas.length === 0) {
+            eventosFiltrados = data.events;
+        } else {
+            eventosFiltrados = data.events.filter(evento => categoriasSeleccionadas.includes(evento.category));
+        }
+
+        let busqueda = campoBusqueda.value.trim().toLowerCase();
+
+        eventosFiltrados = eventosFiltrados.filter(evento => {
+            let nombreEvento = evento.name.trim().toLowerCase();
+            let descripcionEvento = evento.description.trim().toLowerCase();
+            return nombreEvento.includes(busqueda) || descripcionEvento.includes(busqueda);
+        });
+
+        let contenedorEventos = document.querySelector(".eventos1");
+        contenedorEventos.innerHTML = "";
+
+        pintarTarjetas(eventosFiltrados, contenedorEventos);
+    });
+});
 
 
+campoBusqueda.addEventListener("input", function(event) {
+    let busqueda = event.target.value.trim().toLowerCase();
+
+    let categoriasSeleccionadas = [];
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            categoriasSeleccionadas.push(checkbox.id);
+        }
+    });
 
 
+    let eventosFiltrados = [];
+    if (categoriasSeleccionadas.length === 0) {
+        eventosFiltrados = data.events;
+    } else {
+        eventosFiltrados = data.events.filter(evento => categoriasSeleccionadas.includes(evento.category));
+    }
 
 
+    eventosFiltrados = eventosFiltrados.filter(evento => {
+        let nombreEvento = evento.name.trim().toLowerCase();
+        let descripcionEvento = evento.description.trim().toLowerCase();
+        return nombreEvento.includes(busqueda) || descripcionEvento.includes(busqueda);
+    });
 
+
+    let contenedorEventos = document.querySelector(".eventos1");
+    contenedorEventos.innerHTML = "";
+
+    if (eventosFiltrados.length === 0) {
+
+        contenedorEventos.innerHTML = "<p>❌❌❌ No events found matching your search.😞🚀❌❌❌ .</p>";
+    } else {
+
+    pintarTarjetas(eventosFiltrados, contenedorEventos);}
+});
 
 

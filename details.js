@@ -197,133 +197,47 @@ const data = {
     ],
 };
 
-let padreTarjetasPasados = document.querySelector(".eventosPasados");
 
-crearTarjetasPasados(padreTarjetasPasados, data.events);
+let events = data.events;
+let cardDetails = document.querySelector(".cardDetails");
+let idDetails = new URL(window.location.href).searchParams.get("id");
 
-function crearTarjetasPasados(padre, eventos) {
-    let currentDate = data.currentDate;
-
-    for (let i = 0; i < eventos.length; i++) {
-        let evento = eventos[i];
-        let fechaEvento = evento.date;
-
-        if (fechaEvento < currentDate) {
-            let nuevaTarjeta = document.createElement("div");
-            nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-2", "text-bg-dark", "mb-3", "sombra");
-            nuevaTarjeta.style.width = "18rem";
-
-            nuevaTarjeta.innerHTML = `
-                <img src="${evento.image}" class="card-img-top" alt="${evento.name}" style="height: 200px;">
-                <div class="card-body">
-                    <h4 class="card-title">${evento.name}</h4>
-                    <p class="card-text">${evento.description}</p>
-                </div>
-                <div class="d-flex flex-row justify-content-between align-items-center">
-                    <p>Price: ${evento.price} USD</p>
-                    <a href="details.html?id=${evento._id}" class="btn btn-primary mb-3">Detalles</a>
-                </div>
+document.addEventListener("DOMContentLoaded", () => {
+    let tarjeta = events.filter(evento => evento._id == idDetails);
+    if (tarjeta.length > 0) {
+        let evento = tarjeta[0];
+        let assistanceHTML = '';
+        if (evento.assistance) {
+            assistanceHTML = `
+                <dt class="col-ms-4">Assistance:</dt>
+                <dd class="col-ms-8">${evento.assistance}</dd>
             `;
-
-            padre.appendChild(nuevaTarjeta);
         }
-    }
-}
-
-let categorias = [];
-
-data.events.forEach(evento => {
-    if(!categorias.includes(evento.category)) {
-        categorias.push(evento.category);
-    }
-});
-
-let contenedorCheckboxes = document.querySelector(".contenedorCheckbox");
-
-categorias.forEach(categoria => {
-    contenedorCheckboxes.innerHTML += `
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="${categoria}" value="${categoria}">
-            <label class="form-check-label" for="${categoria}">${categoria}</label>
-        </div>
-    `;
-});
-
-let checkboxes = document.querySelectorAll(".form-check-input");
-
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", function() {
-    
-        let categoriasSeleccionadas = [];
-        checkboxes.forEach(item => {
-            if (item.checked) {
-                categoriasSeleccionadas.push(item.id);
-            }
-        });
-
-        
-        let eventosFiltrados = [];
-        if (categoriasSeleccionadas.length === 0) {
-            eventosFiltrados = data.events;
-        } else {
-            eventosFiltrados = data.events.filter(evento => categoriasSeleccionadas.includes(evento.category));
-        }
-
-    
-        let busqueda = campoBusqueda.value.trim().toLowerCase();
-
-        
-        eventosFiltrados = eventosFiltrados.filter(evento => {
-            let nombreEvento = evento.name.trim().toLowerCase();
-            let descripcionEvento = evento.description.trim().toLowerCase();
-            return nombreEvento.includes(busqueda) || descripcionEvento.includes(busqueda);
-        });
-
-        let contenedorEventos = document.querySelector(".eventosPasados");
-        contenedorEventos.innerHTML = "";
-
-        crearTarjetasPasados(contenedorEventos, eventosFiltrados);
-    });
-});
-
-let campoBusqueda = document.querySelector('input[type="search"]');
-
-campoBusqueda.addEventListener("input", () => {
-    let busqueda = campoBusqueda.value.trim().toLowerCase();
-
-    let categoriasSeleccionadas = [];
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            categoriasSeleccionadas.push(checkbox.id);
-        }
-    });
-
-    let eventosFiltrados = [];
-    if (categoriasSeleccionadas.length === 0) {
-        eventosFiltrados = data.events;
+        cardDetails.innerHTML = `
+            <div class="col-md-6 mb-md-0 p-md-4 d-flex align-items-center">
+                <img src="${evento.image}" class="w-100 sombra" alt="...">
+            </div>
+            <div class="col-md-6 p-4 ps-md-0">
+                <dl class="row">
+                    <dt class="col-ms-4">Name:</dt>
+                    <dd class="col-ms-8">${evento.name}</dd>
+                    <dt class="col-ms-4">Date:</dt>
+                    <dd class="col-ms-8">${evento.date}</dd>
+                    <dt class="col-ms-4">Description:</dt>
+                    <dd class="col-ms-8">${evento.description}</dd>
+                    <dt class="col-ms-4">Category:</dt>
+                    <dd class="col-ms-8">${evento.category}</dd>
+                    <dt class="col-ms-4">Place:</dt>
+                    <dd class="col-ms-8">${evento.place}</dd>
+                    <dt class="col-ms-4">Capacity:</dt>
+                    <dd class="col-ms-8">${evento.capacity}</dd>
+                    ${assistanceHTML}
+                    <dt class="col-ms-4">Price:</dt>
+                    <dd class="col-ms-8">${evento.price}</dd>
+                </dl>
+            </div>
+        `;
     } else {
-        eventosFiltrados = data.events.filter(evento => categoriasSeleccionadas.includes(evento.category));
+        cardDetails.innerHTML = "<p>Event not found.</p>";
     }
-
-    
-    eventosFiltrados = eventosFiltrados.filter(evento => {
-        let nombreEvento = evento.name.trim().toLowerCase();
-        let descripcionEvento = evento.description.trim().toLowerCase();
-        return nombreEvento.includes(busqueda) || descripcionEvento.includes(busqueda);
-    });
-
-
-    let contenedorEventos = document.querySelector(".eventosPasados");
-    contenedorEventos.innerHTML = "";
-
-
-    if (eventosFiltrados.length === 0) {
-        
-        contenedorEventos.innerHTML = "<p>❌❌❌ No events found matching your search.😞🚀❌❌❌ .</p>";
-    } else {
-        
-        crearTarjetasPasados(contenedorEventos, eventosFiltrados);}
 });
-
-
-
