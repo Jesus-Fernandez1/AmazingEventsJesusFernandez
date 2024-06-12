@@ -2,11 +2,11 @@ import * as funcionesGlobales from "./funciones.js";
 
 let urleventos = "https://aulamindhub.github.io/amazing-api/events.json";
 
-// Función para cargar datos desde la API
+
 fetch(urleventos)
     .then(response => response.json())
     .then(data => {
-        // Llamar a la función para procesar los datos
+        
         procesarDatos(data);
     });
 
@@ -14,7 +14,7 @@ function procesarDatos(data) {
     let padreTarjetasPasados = document.querySelector(".eventos1");
     pintarTarjetas(data.events, padreTarjetasPasados);
 
-    // Generar checkboxes después de cargar los datos
+    // Generar checkboxes después de cargar los datos //
     let categorias = obtenerCategorias(data.events);
     let contenedorCheckboxes = document.querySelector(".contenedorCheckbox");
     funcionesGlobales.generarCheckboxes(categorias, contenedorCheckboxes);
