@@ -1,6 +1,6 @@
 
 export function crearTarjeta(tarjeta) {
-    const nuevaTarjeta = document.createElement("div");
+    let nuevaTarjeta = document.createElement("div");
     nuevaTarjeta.classList.add("tarjeta", "card", "mx-2", "col-4", "text-bg-dark", "mb-3", "sombra");
     nuevaTarjeta.style.width = "18rem";
 

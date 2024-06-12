@@ -24,24 +24,24 @@ function tablaDatos(data) {
     });
 
     //  evento con el porcentaje de asistencia más alto //
-    const eventoMaxAsistencia = eventos.reduce((maxEvento, evento) => {
+    let eventoMaxAsistencia = eventos.reduce((maxEvento, evento) => {
         return evento.porcentajeAsistencia > maxEvento.porcentajeAsistencia ? evento : maxEvento;
     });
 
     //  evento con el porcentaje de asistencia más bajo //
-    const eventoMinAsistencia = eventos.reduce((minEvento, evento) => {
+    let eventoMinAsistencia = eventos.reduce((minEvento, evento) => {
         return evento.porcentajeAsistencia < minEvento.porcentajeAsistencia ? evento : minEvento;
     });
 
     //  evento con la mayor capacidad //
-    const eventoMaxCapacidad = eventos.reduce((maxEvento, evento) => {
+    let eventoMaxCapacidad = eventos.reduce((maxEvento, evento) => {
         return evento.capacity > maxEvento.capacity ? evento : maxEvento;
     });
 
     // capacidad total de los eventos en cada categoría //
-    const categoriasCapacidad = {};
+    let categoriasCapacidad = {};
     eventosfuturos.forEach(evento => {
-        const categoria = evento.category;
+        let categoria = evento.category;
         if (!categoriasCapacidad[categoria]) {
             categoriasCapacidad[categoria] = 0;
         }
@@ -49,17 +49,17 @@ function tablaDatos(data) {
     });
 
     // porcentaje de asistencia y los ingresos totales por categoría de los eventos futuros //
-    const categorias = {};
+    let categorias = {};
     eventosfuturos.forEach(evento => {
-        const categoria = evento.category;
+        let categoria = evento.category;
         if (!categorias[categoria]) {
             categorias[categoria] = {
-                count: 0,
+                
                 revenue: 0,
                 totalAssistance: 0
             };
         }
-        categorias[categoria].count++;
+       
         categorias[categoria].revenue += evento.price * evento.estimate;
         categorias[categoria].totalAssistance += evento.estimate;
     });
@@ -87,12 +87,12 @@ function tablaDatos(data) {
         `;
 
 
-    for (const categoria in categorias) {
-        const count = categorias[categoria].count;
-        const revenue = categorias[categoria].revenue;
-        const totalAssistance = categorias[categoria].totalAssistance;
-        const capacity = categoriasCapacidad[categoria];
-        const porcentajeAsistencia = (totalAssistance / capacity) * 100;
+    for (let categoria in categorias) {
+        
+        let revenue = categorias[categoria].revenue;
+        let totalAssistance = categorias[categoria].totalAssistance;
+        let capacity = categoriasCapacidad[categoria];
+        let porcentajeAsistencia = (totalAssistance / capacity) * 100;
 
         tableContent += `
                 <tr>
@@ -104,12 +104,12 @@ function tablaDatos(data) {
     }
 
     // capacidad total de los eventos en cada categoría de eventos pasados//
-    const categoriasCapacidadPasados = {};
+    let categoriasCapacidadPasados = {};
 
     let eventosPasados = eventos.filter(evento => evento.date < currentDate);
 
     eventosPasados.forEach(evento => {
-        const categoria = evento.category;
+        let categoria = evento.category;
         if (!categoriasCapacidadPasados[categoria]) {
             categoriasCapacidadPasados[categoria] = 0;
         }
@@ -117,17 +117,17 @@ function tablaDatos(data) {
     });
 
     // porcentaje de asistencia y los ingresos totales por categoría entre los eventos pasados//
-    const categoriasPasados = {};
+    let categoriasPasados = {};
     eventosPasados.forEach(evento => {
-        const categoria = evento.category;
+        let categoria = evento.category;
         if (!categoriasPasados[categoria]) {
             categoriasPasados[categoria] = {
-                count: 0,
+                
                 revenue: 0,
                 totalAssistance: 0
             };
         }
-        categoriasPasados[categoria].count++;
+        
         categoriasPasados[categoria].revenue += evento.price * evento.assistance;
         categoriasPasados[categoria].totalAssistance += evento.assistance;
     });
@@ -149,13 +149,13 @@ function tablaDatos(data) {
         `;
 
     
-    for (const categoria in categoriasPasados) {
-        const count = categoriasPasados[categoria].count;
-        const revenue = categoriasPasados[categoria].revenue;
-        const totalAssistance = categoriasPasados[categoria].totalAssistance;
-        const capacity = categoriasCapacidadPasados[categoria];
+    for (let categoria in categoriasPasados) {
+       
+        let revenue = categoriasPasados[categoria].revenue;
+        let totalAssistance = categoriasPasados[categoria].totalAssistance;
+        let capacity = categoriasCapacidadPasados[categoria];
         // Utilizar la capacidad de los eventos pasados //
-        const porcentajeAsistencia = capacity !== 0 ? (totalAssistance / capacity) * 100 : 0;
+        let porcentajeAsistencia = capacity !== 0 ? (totalAssistance / capacity) * 100 : 0;
 
 
         tableContentPasados += `
@@ -168,6 +168,6 @@ function tablaDatos(data) {
     }
 
     // Agregar el contenido a la tabla existente //
-    const tabla = document.querySelector('.tabla1 table tbody');
+    let tabla = document.querySelector('.tabla1 table tbody');
     tabla.innerHTML = tableContent + tableContentPasados;
 }
