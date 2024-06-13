@@ -89,7 +89,7 @@ function tablaDatos(data) {
 
     for (let categoria in categorias) {
         
-        let revenue = categorias[categoria].revenue;
+        let revenue = categorias[categoria].revenue.toLocaleString();
         let totalAssistance = categorias[categoria].totalAssistance;
         let capacity = categoriasCapacidad[categoria];
         let porcentajeAsistencia = (totalAssistance / capacity) * 100;
@@ -151,7 +151,7 @@ function tablaDatos(data) {
     
     for (let categoria in categoriasPasados) {
        
-        let revenue = categoriasPasados[categoria].revenue;
+        let revenue = categoriasPasados[categoria].revenue.toLocaleString();
         let totalAssistance = categoriasPasados[categoria].totalAssistance;
         let capacity = categoriasCapacidadPasados[categoria];
         // Utilizar la capacidad de los eventos pasados //
